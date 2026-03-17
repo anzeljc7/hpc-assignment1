@@ -2,10 +2,4 @@ Loaded image valve.png of size 600x450 with 3 channels. Removing 128 seams.
 Using 8 threads.
 Thread 0 -> CPU 0 NUMA 0
 Thread 7 -> CPU 7 NUMA 0
-Run 1 Time: 0.207465 s
-Run 2 Time: 0.205556 s
-Run 3 Time: 0.205428 s
-Run 4 Time: 0.202043 s
-Run 5 Time: 0.201770 s
-
-Average Time over 5 runs: 0.204453 s
+Time: 0.224860 s

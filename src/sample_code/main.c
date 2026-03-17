@@ -18,13 +18,14 @@
 
 // Pomožna funkcija za branje vrednosti piksla (z omejitvijo na robovih slike)
 inline int get_pixel(const unsigned char *img, int r, int c, int w, int h, int orig_w, int ch, int cpp) {
-    if (r < 0) r = 0;
-    if (r >= h) r = h - 1;
     if (c < 0) c = 0;
     if (c >= w) c = w - 1;
+    if (r < 0) r = 0;
+    if (r >= h) r = h - 1;
     return img[(r * orig_w + c) * cpp + ch];
 }
 
+// Algoritem
 // 1. KORAK: Paralelni izračun energije (Sobel)
 void calculate_energy(const unsigned char *img, float *energy, int w, int h, int orig_w, int cpp) {
     #pragma omp parallel for
@@ -136,36 +137,32 @@ void remove_seam(unsigned char *img, const int *seam, int w, int h, int orig_w, 
     }
 }
 
-int main(int argc, char *argv[]) {
-    if (argc < 4) {
-        printf("USAGE: %s input_image output_image num_seams\n", argv[0]);
-        exit(EXIT_FAILURE);
-    }
-
-    char image_in_name[MAX_FILENAME];
-    char image_out_name[MAX_FILENAME];
-    snprintf(image_in_name, MAX_FILENAME, "%s", argv[1]);
-    snprintf(image_out_name, MAX_FILENAME, "%s", argv[2]);
-    int num_seams = atoi(argv[3]);
-
-    // Load image from file
-    int width, height, cpp;
-    unsigned char *image_in = stbi_load(image_in_name, &width, &height, &cpp, COLOR_CHANNELS);
+// Ostale pomožne funkicje
+// 1. Funkcija za nalaganje slike
+unsigned char* load_image_and_check(const char *image_in_name, int *width, int *height, int *cpp, int num_seams) {
+    // Klic knjižnice stb (upoštevaj, da width, height in cpp že podajamo kot kazalce)
+    unsigned char *image_in = stbi_load(image_in_name, width, height, cpp, COLOR_CHANNELS);
 
     if (image_in == NULL) {
-        printf("Error reading loading image %s!\n", image_in_name);
+        printf("Error loading image %s!\n", image_in_name);
         exit(EXIT_FAILURE);
     }
     
-    if (num_seams >= width) {
+    // Uporabimo *width, ker je width zdaj kazalec
+    if (num_seams >= *width) {
         printf("Error: num_seams must be less than image width!\n");
         stbi_image_free(image_in);
         exit(EXIT_FAILURE);
     }
 
-    printf("Loaded image %s of size %dx%d with %d channels. Removing %d seams.\n", image_in_name, width, height, cpp, num_seams);
-    
-    // Izpis niti (kot v originalnem sample.c)
+    printf("Loaded image %s of size %dx%d with %d channels. Removing %d seams.\n", 
+           image_in_name, *width, *height, *cpp, num_seams);
+
+    return image_in;
+}
+
+// 2. Funkcija za izpis OpenMP diagnostike
+void print_omp_info() {
     #pragma omp parallel
     {
         #pragma omp single
@@ -177,67 +174,59 @@ int main(int argc, char *argv[]) {
 
         #pragma omp critical
         {
-            // Izpisano samo za prve in zadnje niti, da terminal ne bo prenatrpan pri 32 nitih
             if (tid == 0 || tid == omp_get_num_threads() - 1) {
                 printf("Thread %d -> CPU %d NUMA %d\n", tid, cpu, node);
             }
         }
     }
+}
 
-    const size_t datasize = width * height * cpp * sizeof(unsigned char);
-    unsigned char *working_img = (unsigned char *)malloc(datasize);
+// 3. Funkcija, ki dejansko poganja algoritem in meri čas (Benchmark)
+void run_benchmark(unsigned char *image_in, unsigned char *working_img, float *energy, 
+                   float *cumulative, int *seam, int width, int height, int cpp, int num_seams, size_t datasize) {
     
-    float *energy = (float *)malloc(width * height * sizeof(float));
-    float *cumulative = (float *)malloc(width * height * sizeof(float));
-    int *seam = (int *)malloc(height * sizeof(int));
-
-    if (!working_img || !energy || !cumulative || !seam) {
-        printf("Error: Failed to allocate memory!\n");
-        exit(EXIT_FAILURE);
+    // Kopiramo originalno sliko v delovni pomnilnik
+    memcpy(working_img, image_in, datasize);
+    int current_width = width;
+    
+    // Začetek merjenja časa
+    double start = omp_get_wtime();
+    
+    for (int s = 0; s < num_seams; s++) {
+        calculate_energy(working_img, energy, current_width, height, width, cpp);
+        calculate_cumulative_energy(energy, cumulative, current_width, height, width);
+        find_seam(cumulative, seam, current_width, height, width);
+        remove_seam(working_img, seam, current_width, height, width, cpp);
+        current_width--; // Slika je zdaj za 1 piksel ožja
     }
 
-    double total_time = 0.0;
-    int final_width = width - num_seams;
-
-            // Obnovimo originalno sliko na začetku vsakega testa
-            memcpy(working_img, image_in, datasize);
-            int current_width = width;
-
-            double start = omp_get_wtime();
-            
-                for (int s = 0; s < num_seams; s++) {
-                calculate_energy(working_img, energy, current_width, height, width, cpp);
-                calculate_cumulative_energy(energy, cumulative, current_width, height, width);
-                find_seam(cumulative, seam, current_width, height, width);
-                remove_seam(working_img, seam, current_width, height, width, cpp);
-                current_width--;
-            }
-
-            double stop = omp_get_wtime();
-            double elapsed = stop - start;
-            printf("Run %d Time: %f s\n", run + 1, elapsed);
-            total_time += elapsed;
+    // Konec merjenja časa
+    double stop = omp_get_wtime();
+    double elapsed = stop - start;
     
+    // Izpis čistega časa obdelave
+    printf("Time: %f s\n", elapsed);
+}
 
-    printf("\nAverage Time over %d runs: %f s\n", NUM_RUNS, total_time / NUM_RUNS);
-
-    // Po odstranjevanju šivov slika v spominu vsebuje "luknje" na koncu vsake vrstice.
-    // Piksle zložimo skupaj, da bo izhodna slika pravilnega formata.
+// 4. Funkcija za odstranjevanje "lukenj" v spominu po izrezu šivov
+unsigned char* repack_image(unsigned char *working_img, int width, int final_width, int height, int cpp) {
     unsigned char *image_out = (unsigned char *)malloc(final_width * height * cpp * sizeof(unsigned char));
+    if (!image_out) return NULL;
+
     for (int r = 0; r < height; r++) {
         memcpy(&image_out[r * final_width * cpp], &working_img[r * width * cpp], final_width * cpp);
     }
+    return image_out;
+}
 
-    // Write the output image to file
-    char image_out_name_temp[MAX_FILENAME];
-    strncpy(image_out_name_temp, image_out_name, MAX_FILENAME);
-
+// 5. Funkcija za shranjevanje slike v ustreznem formatu
+void save_image(const char *image_out_name, unsigned char *image_out, int final_width, int height, int cpp) {
     const char *file_type = strrchr(image_out_name, '.');
     if (file_type == NULL) {
         printf("Error: No file extension found!\n");
         exit(EXIT_FAILURE);
     }
-    file_type++; // skip the dot
+    file_type++; // preskoči piko
 
     if (!strcmp(file_type, "png"))
         stbi_write_png(image_out_name, final_width, height, cpp, image_out, final_width * cpp);
@@ -247,8 +236,53 @@ int main(int argc, char *argv[]) {
         stbi_write_bmp(image_out_name, final_width, height, cpp, image_out);
     else
         printf("Error: Unknown image format %s! Only png, jpg, or bmp supported.\n", file_type);
+}
 
-    // Release the memory
+// ================= MAIN =================
+
+int main(int argc, char *argv[]) {
+    if (argc < 4) {
+        printf("Wrong number of arguments!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    char image_in_name[MAX_FILENAME];
+    char image_out_name[MAX_FILENAME];
+    snprintf(image_in_name, MAX_FILENAME, "%s", argv[1]);
+    snprintf(image_out_name, MAX_FILENAME, "%s", argv[2]);
+    int num_seams = atoi(argv[3]);
+
+    // 1. Nalaganje slike
+    int width, height, cpp;
+    unsigned char *image_in = load_image_and_check(image_in_name, &width, &height, &cpp, num_seams);
+    
+    // 2. Izpis informacij o nitih
+    print_omp_info();
+
+    // 3. Alokacija spomina
+    const size_t datasize = width * height * cpp * sizeof(unsigned char);
+    unsigned char *working_img = (unsigned char *)malloc(datasize);
+    float *energy = (float *)malloc(width * height * sizeof(float));
+    float *cumulative = (float *)malloc(width * height * sizeof(float));
+    int *seam = (int *)malloc(height * sizeof(int));
+
+    if (!working_img || !energy || !cumulative || !seam) {
+        printf("Error: Failed to allocate memory!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // 4. Izvajanje algoritma (merjenje časa je znotraj te funkcije)
+    run_benchmark(image_in, working_img, energy, cumulative, seam, width, height, cpp, num_seams, datasize);
+
+    // 5. Zlaganje slike skupaj in shranjevanje
+    int final_width = width - num_seams;
+    unsigned char *image_out = repack_image(working_img, width, final_width, height, cpp);
+    
+    if (image_out) {
+        save_image(image_out_name, image_out, final_width, height, cpp);
+    }
+
+    // 6. Čiščenje spomina
     stbi_image_free(image_in);
     free(working_img);
     free(image_out);
