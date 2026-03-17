@@ -18,5 +18,13 @@ module load numactl
 # Compile
 gcc -O3 -lm -lnuma --openmp main.c -o main
 
+mkdir -p ../test_images_out
+
 # Run
-srun  main valve.png valve-out.png 128
+srun  ./main valve.png valve-out.png 128
+srun  ./main ../test_images/720x480.png ../test_images_out/720x480-out.png 128
+srun  ./main ../test_images/1024x768.png ../test_images_out/1024x768-out.png 128
+srun  ./main ../test_images/1920x1200.png ../test_images_out/1920x1200-out.png 128
+srun  ./main ../test_images/3840x2160.png ../test_images_out/3840x2160-out.png 128
+srun  ./main ../test_images/7680x4320.png ../test_images_out/7680x4320-out.png 128
+
