@@ -1,4 +1,5 @@
 #!/bin/bash
+
 #SBATCH --reservation=fri
 #SBATCH --job-name=code_sample
 #SBATCH --ntasks=1
@@ -19,11 +20,11 @@ mkdir -p ../test_images_out
 mkdir -p results
 
 RUNS=5
+THREADS=$OMP_NUM_THREADS
 RESULTS_FILE="results/timings.csv"
 SUMMARY_FILE="results/summary.txt"
 
-# pobriši stare rezultate
-echo "image,run,time_s" > "$RESULTS_FILE"
+echo "image,threads,run,time_s" > "$RESULTS_FILE"
 echo "POVZETEK MERITEV" > "$SUMMARY_FILE"
 echo "================" >> "$SUMMARY_FILE"
 
@@ -38,41 +39,36 @@ run_and_measure () {
     for ((i=1; i<=RUNS; i++)); do
         echo "  Run $i/$RUNS"
 
-        # Zajemi celoten izpis programa
         program_output=$(srun ./main "$input" "$output" "$seams" 2>&1)
-
-        # Izlušči čas iz vrstice: Time: 0.123456 s
         time_s=$(echo "$program_output" | awk '/^Time:/ {print $2}')
 
-        # Če čas ni bil najden, javi napako in izpiši output
         if [ -z "$time_s" ]; then
             echo "Napaka: časa nisem našel v izpisu."
             echo "$program_output"
             exit 1
         fi
 
-        echo "$input,$i,$time_s" >> "$RESULTS_FILE"
+        echo "$input,$THREADS,$i,$time_s" >> "$RESULTS_FILE"
         echo "    Time = $time_s s"
     done
 
-    # Izračun povprečja za trenutno sliko
-    avg=$(awk -F, -v img="$input" '
-        $1 == img {sum += $3; count++}
+    avg=$(awk -F, -v img="$input" -v th="$THREADS" '
+        $1 == img && $2 == th {sum += $4; count++}
         END {
             if (count > 0) printf "%.6f", sum / count;
         }
     ' "$RESULTS_FILE")
 
     echo "  Average for $input = $avg s"
-    echo "$input -> avg = $avg s" >> "$SUMMARY_FILE"
+    echo "$input | threads=$THREADS | avg=$avg s" >> "$SUMMARY_FILE"
 }
 
-run_and_measure "valve.png"                         "valve-out.png"                         128
-run_and_measure "../test_images/720x480.png"       "../test_images_out/720x480-out.png"   128
-run_and_measure "../test_images/1024x768.png"      "../test_images_out/1024x768-out.png"  128
-run_and_measure "../test_images/1920x1200.png"     "../test_images_out/1920x1200-out.png" 128
-run_and_measure "../test_images/3840x2160.png"     "../test_images_out/3840x2160-out.png" 128
-run_and_measure "../test_images/7680x4320.png"     "../test_images_out/7680x4320-out.png" 128
+run_and_measure "valve.png"                     "valve-out.png"                         128
+run_and_measure "../test_images/720x480.png"   "../test_images_out/720x480-out.png"   128
+run_and_measure "../test_images/1024x768.png"  "../test_images_out/1024x768-out.png"  128
+run_and_measure "../test_images/1920x1200.png" "../test_images_out/1920x1200-out.png" 128
+run_and_measure "../test_images/3840x2160.png" "../test_images_out/3840x2160-out.png" 128
+run_and_measure "../test_images/7680x4320.png" "../test_images_out/7680x4320-out.png" 128
 
 echo ""
 echo "Rezultati shranjeni v:"
