@@ -2,29 +2,29 @@ Loaded image valve.png of size 600x450 with 3 channels. Removing 128 seams.
 Using 8 threads.
 Thread 0 -> CPU 0 NUMA 0
 Thread 7 -> CPU 7 NUMA 0
-Time: 0.215401 s
-Loaded image ../test_images/720x480.png of size 720x480 with 3 channels. Removing 128 seams.
+Time: 0.214832 s
+Loaded image ../test_images/720x480.png of size 720x480 with 3 channels. Removing 256 seams.
 Using 8 threads.
 Thread 0 -> CPU 0 NUMA 0
 Thread 7 -> CPU 7 NUMA 0
-Time: 0.240962 s
-Loaded image ../test_images/1024x768.png of size 1024x768 with 3 channels. Removing 128 seams.
+Time: 0.457395 s
+Loaded image ../test_images/1024x768.png of size 1024x768 with 3 channels. Removing 256 seams.
 Using 8 threads.
 Thread 0 -> CPU 0 NUMA 0
 Thread 7 -> CPU 7 NUMA 0
-Time: 0.466953 s
-Loaded image ../test_images/1920x1200.png of size 1920x1200 with 3 channels. Removing 128 seams.
+Time: 0.915225 s
+Loaded image ../test_images/1920x1200.png of size 1920x1200 with 3 channels. Removing 256 seams.
 Using 8 threads.
 Thread 0 -> CPU 0 NUMA 0
 Thread 7 -> CPU 7 NUMA 0
-Time: 1.083694 s
-Loaded image ../test_images/3840x2160.png of size 3840x2160 with 3 channels. Removing 128 seams.
+Time: 2.142540 s
+Loaded image ../test_images/3840x2160.png of size 3840x2160 with 3 channels. Removing 256 seams.
 Using 8 threads.
 Thread 0 -> CPU 0 NUMA 0
 Thread 7 -> CPU 7 NUMA 0
-Time: 3.178041 s
-Loaded image ../test_images/7680x4320.png of size 7680x4320 with 3 channels. Removing 128 seams.
+Time: 6.120690 s
+Loaded image ../test_images/7680x4320.png of size 7680x4320 with 3 channels. Removing 2000 seams.
 Using 8 threads.
 Thread 0 -> CPU 0 NUMA 0
 Thread 7 -> CPU 7 NUMA 0
-Time: 11.064166 s
+Time: 154.408370 s
