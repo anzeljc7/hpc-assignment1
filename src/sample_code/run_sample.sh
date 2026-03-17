@@ -7,14 +7,21 @@
 #SBATCH --output=sample_out.log
 #SBATCH --hint=nomultithread
 
+# Ustavi izvajanje skripte, če kateri koli ukaz (npr. gcc) spodleti!
+set -e 
+
 export OMP_PLACES=cores
 export OMP_PROC_BIND=close
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
 module load numactl
 
-# Compile
-gcc main.c -O3 -fopenmp -lnuma -lm -o main
+# Compile - TUKAJ JE POPRAVEK! Dodan je utils.c
+# (Če imaš utils.c prav tako v mapi algorithm_implementations, 
+# potem uporabi pot: ./algorithm_implementations/utils.c)
+gcc -O3 -fopenmp ./algorithm_implementations/parallel.c ./algorithm_implementations/utils.c -o parallel -lm -lnuma
+# Tukaj ugasnemo "set -e", da nam skripta ne crkne, če slučajno srun vrne opozorilo
+set +e
 
 mkdir -p ../test_images_out
 mkdir -p results
@@ -39,7 +46,7 @@ run_and_measure () {
     for ((i=1; i<=RUNS; i++)); do
         echo "  Run $i/$RUNS"
 
-        program_output=$(srun ./main "$input" "$output" "$seams" 2>&1)
+        program_output=$(srun ./parallel "$input" "$output" "$seams" 2>&1)
         time_s=$(echo "$program_output" | awk '/^Time:/ {print $2}')
 
         if [ -z "$time_s" ]; then

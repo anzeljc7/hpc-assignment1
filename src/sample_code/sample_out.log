@@ -1,30 +1,82 @@
-Loaded image valve.png of size 600x450 with 3 channels. Removing 128 seams.
-Using 8 threads.
-Thread 0 -> CPU 0 NUMA 0
-Thread 7 -> CPU 7 NUMA 0
-Time: 0.214832 s
-Loaded image ../test_images/720x480.png of size 720x480 with 3 channels. Removing 256 seams.
-Using 8 threads.
-Thread 0 -> CPU 0 NUMA 0
-Thread 7 -> CPU 7 NUMA 0
-Time: 0.457395 s
-Loaded image ../test_images/1024x768.png of size 1024x768 with 3 channels. Removing 256 seams.
-Using 8 threads.
-Thread 0 -> CPU 0 NUMA 0
-Thread 7 -> CPU 7 NUMA 0
-Time: 0.915225 s
-Loaded image ../test_images/1920x1200.png of size 1920x1200 with 3 channels. Removing 256 seams.
-Using 8 threads.
-Thread 0 -> CPU 0 NUMA 0
-Thread 7 -> CPU 7 NUMA 0
-Time: 2.142540 s
-Loaded image ../test_images/3840x2160.png of size 3840x2160 with 3 channels. Removing 256 seams.
-Using 8 threads.
-Thread 0 -> CPU 0 NUMA 0
-Thread 7 -> CPU 7 NUMA 0
-Time: 6.120690 s
-Loaded image ../test_images/7680x4320.png of size 7680x4320 with 3 channels. Removing 2000 seams.
-Using 8 threads.
-Thread 0 -> CPU 0 NUMA 0
-Thread 7 -> CPU 7 NUMA 0
-Time: 154.408370 s
+
+Testing: valve.png
+  Run 1/5
+    Time = 0.212001 s
+  Run 2/5
+    Time = 0.209032 s
+  Run 3/5
+    Time = 0.210535 s
+  Run 4/5
+    Time = 0.211869 s
+  Run 5/5
+    Time = 0.208403 s
+  Average for valve.png = 0.210368 s
+
+Testing: ../test_images/720x480.png
+  Run 1/5
+    Time = 0.240186 s
+  Run 2/5
+    Time = 0.247070 s
+  Run 3/5
+    Time = 0.244328 s
+  Run 4/5
+    Time = 0.239431 s
+  Run 5/5
+    Time = 0.244698 s
+  Average for ../test_images/720x480.png = 0.243143 s
+
+Testing: ../test_images/1024x768.png
+  Run 1/5
+    Time = 0.463104 s
+  Run 2/5
+    Time = 0.466484 s
+  Run 3/5
+    Time = 0.467822 s
+  Run 4/5
+    Time = 0.466389 s
+  Run 5/5
+    Time = 0.466075 s
+  Average for ../test_images/1024x768.png = 0.465975 s
+
+Testing: ../test_images/1920x1200.png
+  Run 1/5
+    Time = 1.080940 s
+  Run 2/5
+    Time = 1.083995 s
+  Run 3/5
+    Time = 1.083717 s
+  Run 4/5
+    Time = 1.084489 s
+  Run 5/5
+    Time = 1.082695 s
+  Average for ../test_images/1920x1200.png = 1.083167 s
+
+Testing: ../test_images/3840x2160.png
+  Run 1/5
+    Time = 3.121427 s
+  Run 2/5
+    Time = 3.135539 s
+  Run 3/5
+    Time = 3.136031 s
+  Run 4/5
+    Time = 3.128194 s
+  Run 5/5
+    Time = 3.119151 s
+  Average for ../test_images/3840x2160.png = 3.128068 s
+
+Testing: ../test_images/7680x4320.png
+  Run 1/5
+    Time = 10.991714 s
+  Run 2/5
+    Time = 10.947589 s
+  Run 3/5
+    Time = 11.026964 s
+  Run 4/5
+    Time = 11.023081 s
+  Run 5/5
+    Time = 10.957610 s
+  Average for ../test_images/7680x4320.png = 10.989392 s
+
+Rezultati shranjeni v:
+  results/timings.csv
+  results/summary.txt
