@@ -19,4 +19,4 @@ module load numactl
 gcc -O3 -lm -lnuma --openmp main.c -o main
 
 # Run
-srun  main valve.png valve-out.png
+srun  main valve.png valve-out.png 128

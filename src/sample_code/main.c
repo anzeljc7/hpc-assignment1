@@ -196,30 +196,28 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
 
-    int NUM_RUNS = 5;
     double total_time = 0.0;
     int final_width = width - num_seams;
 
-    for (int run = 0; run < NUM_RUNS; run++) {
-        // Obnovimo originalno sliko na začetku vsakega testa
-        memcpy(working_img, image_in, datasize);
-        int current_width = width;
+            // Obnovimo originalno sliko na začetku vsakega testa
+            memcpy(working_img, image_in, datasize);
+            int current_width = width;
 
-        double start = omp_get_wtime();
-        
-        for (int s = 0; s < num_seams; s++) {
-            calculate_energy(working_img, energy, current_width, height, width, cpp);
-            calculate_cumulative_energy(energy, cumulative, current_width, height, width);
-            find_seam(cumulative, seam, current_width, height, width);
-            remove_seam(working_img, seam, current_width, height, width, cpp);
-            current_width--;
-        }
+            double start = omp_get_wtime();
+            
+                for (int s = 0; s < num_seams; s++) {
+                calculate_energy(working_img, energy, current_width, height, width, cpp);
+                calculate_cumulative_energy(energy, cumulative, current_width, height, width);
+                find_seam(cumulative, seam, current_width, height, width);
+                remove_seam(working_img, seam, current_width, height, width, cpp);
+                current_width--;
+            }
 
-        double stop = omp_get_wtime();
-        double elapsed = stop - start;
-        printf("Run %d Time: %f s\n", run + 1, elapsed);
-        total_time += elapsed;
-    }
+            double stop = omp_get_wtime();
+            double elapsed = stop - start;
+            printf("Run %d Time: %f s\n", run + 1, elapsed);
+            total_time += elapsed;
+    
 
     printf("\nAverage Time over %d runs: %f s\n", NUM_RUNS, total_time / NUM_RUNS);
 
