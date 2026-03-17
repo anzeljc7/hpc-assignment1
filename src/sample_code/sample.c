@@ -6,7 +6,7 @@
 #include <sched.h>
 #include <numa.h>
 
-// ha2
+// ha22
 
 #define STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION
