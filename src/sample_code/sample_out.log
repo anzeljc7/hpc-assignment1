@@ -1,82 +1,82 @@
 
 Testing: valve.png
   Run 1/5
-    Time = 0.212001 s
+    Time = 0.017436 s
   Run 2/5
-    Time = 0.209032 s
+    Time = 0.017692 s
   Run 3/5
-    Time = 0.210535 s
+    Time = 0.017731 s
   Run 4/5
-    Time = 0.211869 s
+    Time = 0.017931 s
   Run 5/5
-    Time = 0.208403 s
-  Average for valve.png = 0.210368 s
+    Time = 0.017805 s
+  Average for valve.png = 0.017719 s
 
 Testing: ../test_images/720x480.png
   Run 1/5
-    Time = 0.240186 s
+    Time = 0.021362 s
   Run 2/5
-    Time = 0.247070 s
+    Time = 0.021243 s
   Run 3/5
-    Time = 0.244328 s
+    Time = 0.021237 s
   Run 4/5
-    Time = 0.239431 s
+    Time = 0.021268 s
   Run 5/5
-    Time = 0.244698 s
-  Average for ../test_images/720x480.png = 0.243143 s
+    Time = 0.021206 s
+  Average for ../test_images/720x480.png = 0.021263 s
 
 Testing: ../test_images/1024x768.png
   Run 1/5
-    Time = 0.463104 s
+    Time = 0.046572 s
   Run 2/5
-    Time = 0.466484 s
+    Time = 0.046536 s
   Run 3/5
-    Time = 0.467822 s
+    Time = 0.046833 s
   Run 4/5
-    Time = 0.466389 s
+    Time = 0.046542 s
   Run 5/5
-    Time = 0.466075 s
-  Average for ../test_images/1024x768.png = 0.465975 s
+    Time = 0.046574 s
+  Average for ../test_images/1024x768.png = 0.046611 s
 
 Testing: ../test_images/1920x1200.png
   Run 1/5
-    Time = 1.080940 s
+    Time = 0.118234 s
   Run 2/5
-    Time = 1.083995 s
+    Time = 0.117187 s
   Run 3/5
-    Time = 1.083717 s
+    Time = 0.119265 s
   Run 4/5
-    Time = 1.084489 s
+    Time = 0.119700 s
   Run 5/5
-    Time = 1.082695 s
-  Average for ../test_images/1920x1200.png = 1.083167 s
+    Time = 0.123662 s
+  Average for ../test_images/1920x1200.png = 0.119610 s
 
 Testing: ../test_images/3840x2160.png
   Run 1/5
-    Time = 3.121427 s
+    Time = 0.410324 s
   Run 2/5
-    Time = 3.135539 s
+    Time = 0.408224 s
   Run 3/5
-    Time = 3.136031 s
+    Time = 0.409079 s
   Run 4/5
-    Time = 3.128194 s
+    Time = 0.408766 s
   Run 5/5
-    Time = 3.119151 s
-  Average for ../test_images/3840x2160.png = 3.128068 s
+    Time = 0.408006 s
+  Average for ../test_images/3840x2160.png = 0.408880 s
 
 Testing: ../test_images/7680x4320.png
   Run 1/5
-    Time = 10.991714 s
+    Time = 1.570171 s
   Run 2/5
-    Time = 10.947589 s
+    Time = 1.539892 s
   Run 3/5
-    Time = 11.026964 s
+    Time = 1.543318 s
   Run 4/5
-    Time = 11.023081 s
+    Time = 1.540278 s
   Run 5/5
-    Time = 10.957610 s
-  Average for ../test_images/7680x4320.png = 10.989392 s
+    Time = 1.535407 s
+  Average for ../test_images/7680x4320.png = 1.545813 s
 
 Rezultati shranjeni v:
-  results/timings.csv
-  results/summary.txt
+  results/timings-parallel_seam.csv
+  results/summary-parallel_seam.txt

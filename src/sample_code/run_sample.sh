@@ -19,7 +19,7 @@ module load numactl
 # Compile - TUKAJ JE POPRAVEK! Dodan je utils.c
 # (Če imaš utils.c prav tako v mapi algorithm_implementations, 
 # potem uporabi pot: ./algorithm_implementations/utils.c)
-gcc -O3 -fopenmp ./algorithm_implementations/parallel.c ./algorithm_implementations/utils.c -o parallel -lm -lnuma
+gcc -O3 -fopenmp ./algorithm_implementations/parallel_seam.c ./algorithm_implementations/utils.c -o parallel_seam -lm -lnuma
 # Tukaj ugasnemo "set -e", da nam skripta ne crkne, če slučajno srun vrne opozorilo
 set +e
 
@@ -28,8 +28,8 @@ mkdir -p results
 
 RUNS=5
 THREADS=$OMP_NUM_THREADS
-RESULTS_FILE="results/timings.csv"
-SUMMARY_FILE="results/summary.txt"
+RESULTS_FILE="results/timings-parallel_seam.csv"
+SUMMARY_FILE="results/summary-parallel_seam.txt"
 
 echo "image,threads,run,time_s" > "$RESULTS_FILE"
 echo "POVZETEK MERITEV" > "$SUMMARY_FILE"
@@ -46,7 +46,7 @@ run_and_measure () {
     for ((i=1; i<=RUNS; i++)); do
         echo "  Run $i/$RUNS"
 
-        program_output=$(srun ./parallel "$input" "$output" "$seams" 2>&1)
+        program_output=$(srun ./parallel_seam "$input" "$output" "$seams" 2>&1)
         time_s=$(echo "$program_output" | awk '/^Time:/ {print $2}')
 
         if [ -z "$time_s" ]; then
