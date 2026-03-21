@@ -1,0 +1,82 @@
+
+Testiram: valve.png
+  Zagon 1/5
+    Čas = 0.018340 s
+  Zagon 2/5
+    Čas = 0.018509 s
+  Zagon 3/5
+    Čas = 0.018648 s
+  Zagon 4/5
+    Čas = 0.018537 s
+  Zagon 5/5
+    Čas = 0.018622 s
+  Povprečje za valve.png = 0.018531 s
+
+Testiram: ../test_images/720x480.png
+  Zagon 1/5
+    Čas = 0.021575 s
+  Zagon 2/5
+    Čas = 0.021635 s
+  Zagon 3/5
+    Čas = 0.021628 s
+  Zagon 4/5
+    Čas = 0.021655 s
+  Zagon 5/5
+    Čas = 0.021570 s
+  Povprečje za ../test_images/720x480.png = 0.021613 s
+
+Testiram: ../test_images/1024x768.png
+  Zagon 1/5
+    Čas = 0.047862 s
+  Zagon 2/5
+    Čas = 0.047262 s
+  Zagon 3/5
+    Čas = 0.047860 s
+  Zagon 4/5
+    Čas = 0.046909 s
+  Zagon 5/5
+    Čas = 0.047104 s
+  Povprečje za ../test_images/1024x768.png = 0.047399 s
+
+Testiram: ../test_images/1920x1200.png
+  Zagon 1/5
+    Čas = 0.123815 s
+  Zagon 2/5
+    Čas = 0.123478 s
+  Zagon 3/5
+    Čas = 0.124127 s
+  Zagon 4/5
+    Čas = 0.125726 s
+  Zagon 5/5
+    Čas = 0.123349 s
+  Povprečje za ../test_images/1920x1200.png = 0.124099 s
+
+Testiram: ../test_images/3840x2160.png
+  Zagon 1/5
+    Čas = 0.419415 s
+  Zagon 2/5
+    Čas = 0.419570 s
+  Zagon 3/5
+    Čas = 0.420586 s
+  Zagon 4/5
+    Čas = 0.419066 s
+  Zagon 5/5
+    Čas = 0.420656 s
+  Povprečje za ../test_images/3840x2160.png = 0.419859 s
+
+Testiram: ../test_images/7680x4320.png
+  Zagon 1/5
+    Čas = 1.576926 s
+  Zagon 2/5
+    Čas = 1.574957 s
+  Zagon 3/5
+    Čas = 1.582488 s
+  Zagon 4/5
+    Čas = 1.574130 s
+  Zagon 5/5
+    Čas = 1.577035 s
+  Povprečje za ../test_images/7680x4320.png = 1.577107 s
+
+Rezultati shranjeni v:
+  results/timings-parallel_seam.csv
+  results/summary-parallel_seam.txt

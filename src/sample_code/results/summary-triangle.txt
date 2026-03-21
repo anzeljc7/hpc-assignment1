@@ -1,8 +1,0 @@
-POVZETEK MERITEV
-================
-valve.png | threads=8 | avg=0.111618 s
-../test_images/720x480.png | threads=8 | avg=0.134376 s
-../test_images/1024x768.png | threads=8 | avg=0.307146 s
-../test_images/1920x1200.png | threads=8 | avg=0.870304 s
-../test_images/3840x2160.png | threads=8 | avg=3.031594 s
-../test_images/7680x4320.png | threads=8 | avg=11.303479 s
