@@ -8,15 +8,6 @@
 #include "utils.h"
 #include "stb_image.h" 
 
-// 1. KORAK: Paralelni izračun energije (Sobelov operator)
-// Za vsak piksel izračuna njegovo "energijo" oziroma pomembnost.
-
-// - img: Kazalec na vhodne piksle slike (1D zaporedje bajtov).
-// - energy: Kazalec na 1D matriko (float), kamor zapišemo rezultat (energijo).
-// - curr_width: Trenutna efektivna širina slike (ki se manjša z vsakim šivom).
-// - curr_height: Višina slike v pikslih.
-// - orig_width: Originalna širina slike v pomnilniku - potrebno za pravilen preskok v naslednjo vrstico.
-// - cpp: Channels Per Pixel (število barvnih kanalov, npr. 3 za RGB).
 void calculate_energy(const unsigned char *img, float *energy, int curr_width, int curr_height, int orig_width, int cpp) {
     #pragma omp parallel for
     for (int r = 0; r < curr_height; r++) {
@@ -45,15 +36,6 @@ void calculate_energy(const unsigned char *img, float *energy, int curr_width, i
     }
 }
 
-// 2. KORAK (OPTIMIZIRAN): Izračun kumulativne energije s pomočjo trikotnikov
-// Uporabimo dinamično razporejanje za uravnoteženje obremenitve.
-
-// - energy: Kazalec na matriko z izračunanimi energijami pikslov.
-// - cumulative: Kazalec na matriko za seštevek najcenejše poti do dna.
-// - curr_width: Trenutna efektivna širina slike.
-// - curr_height: Višina slike v pikslih.
-// - orig_width: Originalna širina slike v pomnilniku.
-// - B: Višina posameznega horizontalnega pasu (Block size).
 void calculate_cumulative_energy_triangles(const float *energy, float *cumulative, int curr_width, int curr_height, int orig_width, int B) {
     #pragma omp parallel for
     for (int c = 0; c < curr_width; c++) {
@@ -121,7 +103,7 @@ void calculate_cumulative_energy_triangles(const float *energy, float *cumulativ
     }
 }
 
-// 3. KORAK: Iskanje več šivov hkrati
+// Iskanje več šivov hkrati
 // Poišče K šivov naenkrat. Da ne bi izbrali istega šiva večkrat, 
 // po vsaki najdeni poti jo "zastrupimo" (ji nastavimo ceno na zelo veliko številko).
 
@@ -173,7 +155,7 @@ void find_multiple_seams(float *cumulative, int *seams, int curr_width, int curr
     }
 }
 
-// 4. KORAK: Odstranjevanje K šivov hkrati z uporabo logične maske
+//Odstranjevanje K šivov hkrati z uporabo logične maske
 // Namesto da sliko premikamo s K zaporednimi `memmove` operacijami, ustvarimo masko tistih pikslov, ki jih brišemo.
 // Nato vsako vrstico "stisnemo" v enem samem prehodu.
 
@@ -219,18 +201,6 @@ void remove_multiple_seams(unsigned char *img, int *seams, unsigned char *mask, 
     }
 }
 
-// 5. MERJENJE ČASA (Benchmark)
-// Funkcija nadzoruje glavno zanko in sedaj po vsakem izračunu odstrani paket K šivov.
-
-// - image_in: Originalna, nedotaknjena vhodna slika.
-// - working_img: Začasni pomnilnik, kamor kopiramo sliko in jo nato manjšamo.
-// - energy, cumulative, seams, mask: Pred-alociran pomnilnik za algoritme.
-// - width: Začetna širina slike.
-// - height: Višina slike.
-// - cpp: Število barvnih kanalov.
-// - num_seams: Skupno število šivov, ki jih mora algoritem odstraniti.
-// - datasize: Skupna velikost slike v bajtih.
-// - K: Koliko šivov odstranimo v eni iteraciji algoritma.
 void run_benchmark(unsigned char *image_in, unsigned char *working_img, float *energy, 
                    float *cumulative, int *seams, unsigned char *mask, 
                    int width, int height, int cpp, int num_seams, size_t datasize, int K) {
@@ -262,8 +232,6 @@ void run_benchmark(unsigned char *image_in, unsigned char *working_img, float *e
     printf("Time: %f s\n", elapsed);
 }
 
-// ================= MAIN =================
-// Glavna vstopna točka programa.
 int main(int argc, char *argv[]) {
     if (argc < 4) {
         printf("Wrong number of arguments!\n");
@@ -276,7 +244,7 @@ int main(int argc, char *argv[]) {
     snprintf(image_out_name, MAX_FILENAME, "%s", argv[2]);
     int num_seams = atoi(argv[3]);
 
-    // 1. Nalaganje slike (klic iz utils.c)
+    // 1. Nalaganje slike
     int width, height, cpp;
     unsigned char *image_in = load_image_and_check(image_in_name, &width, &height, &cpp, num_seams);
     

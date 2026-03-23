@@ -1,0 +1,8 @@
+POVZETEK MERITEV
+================
+valve.png | niti=2 | povprecje=0.251957 s
+../test_images/720x480.png | niti=2 | povprecje=0.326583 s
+../test_images/1024x768.png | niti=2 | povprecje=0.771528 s
+../test_images/1920x1200.png | niti=2 | povprecje=2.363322 s
+../test_images/3840x2160.png | niti=2 | povprecje=8.731128 s
+../test_images/7680x4320.png | niti=2 | povprecje=35.679445 s

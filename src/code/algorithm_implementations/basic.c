@@ -152,7 +152,7 @@ void remove_seam(unsigned char *img, const int *seam, int curr_width, int curr_h
     }
 }
 
-// 5. MERJENJE ČASA (Benchmark)
+// 5. MERJENJE ČASA
 // Funkcija nadzoruje glavno zanko in meri zgolj čas računanja.
 
 // - image_in: Originalna, nedotaknjena vhodna slika.
@@ -192,15 +192,13 @@ void run_benchmark(unsigned char *image_in, unsigned char *working_img, float *e
     printf("Time: %f s\n", elapsed);
 }
 
-// - argc: Število argumentov iz komandne vrstice.
-// - argv: Matrika stringov (argumenti komandne vrstice).
 int main(int argc, char *argv[]) {
     if (argc < 4) {
         printf("Wrong number of arguments!\n");
         exit(EXIT_FAILURE);
     }
 
-    // Branje poti in števila šivov iz argumentov
+    //0. Branje poti in števila šivov iz argumentov
     char image_in_name[MAX_FILENAME];
     char image_out_name[MAX_FILENAME];
     snprintf(image_in_name, MAX_FILENAME, "%s", argv[1]);

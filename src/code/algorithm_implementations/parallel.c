@@ -198,16 +198,13 @@ void run_benchmark(unsigned char *image_in, unsigned char *working_img, float *e
     printf("Time: %f s\n", elapsed);
 }
 
-
-// - argc: Število argumentov iz komandne vrstice.
-// - argv: Matrika stringov (argumenti komandne vrstice).
 int main(int argc, char *argv[]) {
     if (argc < 4) {
         printf("Wrong number of arguments!\n");
         exit(EXIT_FAILURE);
     }
 
-    // Branje poti in števila šivov iz argumentov
+    //0. Branje poti in števila šivov iz argumentov
     char image_in_name[MAX_FILENAME];
     char image_out_name[MAX_FILENAME];
     snprintf(image_in_name, MAX_FILENAME, "%s", argv[1]);
@@ -219,32 +216,32 @@ int main(int argc, char *argv[]) {
     
     print_omp_info();
 
-    // Alokacija spomina za matrike
+    //1. Alokacija spomina za matrike
     const size_t datasize = width * height * cpp * sizeof(unsigned char);
     unsigned char *working_img = (unsigned char *)malloc(datasize);
     float *energy = (float *)malloc(width * height * sizeof(float));
     float *cumulative = (float *)malloc(width * height * sizeof(float));
     int *seam = (int *)malloc(height * sizeof(int));
 
-    // Preverjanje uspele alokacije
+    //2. Preverjanje uspele alokacije
     if (!working_img || !energy || !cumulative || !seam) {
         printf("Error: Failed to allocate memory!\n");
         exit(EXIT_FAILURE);
     }
 
-    // Glavni izračun
+    //3. Glavni izračun
     run_benchmark(image_in, working_img, energy, cumulative, seam, width, height, cpp, num_seams, datasize);
 
-    // Na koncu zložimo piksle skupaj, da se znebimo "praznega" prostora na desni
+    //4. Na koncu zložimo piksle skupaj, da se znebimo "praznega" prostora na desni
     int final_width = width - num_seams;
     unsigned char *image_out = repack_image(working_img, width, final_width, height, cpp);
     
-    // Shranimo izhodno sliko
+    //5. Shranimo izhodno sliko
     if (image_out) {
         save_image(image_out_name, image_out, final_width, height, cpp);
     }
 
-    // Sproščanje spomina
+    //6. Sproščanje spomina
     stbi_image_free(image_in);
     free(working_img);
     free(image_out);

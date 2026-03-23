@@ -8,15 +8,6 @@
 #include "utils.h"
 #include "stb_image.h" 
 
-// 1. KORAK: Paralelni izračun energije
-// Za vsak piksel izračuna njegovo "energijo" oziroma pomembnost.
-
-// - img: Kazalec na vhodne piksle slike (1D zaporedje bajtov).
-// - energy: Kazalec na 1D matriko (float), kamor zapišemo rezultat (energijo).
-// - curr_width: Trenutna efektivna širina slike (ki se manjša z vsakim šivom).
-// - curr_height: Višina slike v pikslih.
-// - orig_width: Originalna širina slike v pomnilniku - potrebno za pravilen preskok v naslednjo vrstico.
-// - cpp: Channels Per Pixel (število barvnih kanalov, npr. 3 za RGB).
 void calculate_energy(const unsigned char *img, float *energy, int curr_width, int curr_height, int orig_width, int cpp) {
     #pragma omp parallel for
     for (int r = 0; r < curr_height; r++) {
@@ -45,7 +36,7 @@ void calculate_energy(const unsigned char *img, float *energy, int curr_width, i
     }
 }
 
-// 2. KORAK: Paralelni izračun kumulativne energije s trikotniki
+// Paralelni izračun kumulativne energije s trikotniki
 //
 // Sliko razdelimo na horizontalne pasove višine B.
 // Znotraj pasu se računanje razdeli na neodvisne "trikotnike", ki jih niti 
@@ -81,12 +72,7 @@ void calculate_cumulative_energy_triangles(const float *energy, float *cumulativ
 
         // Izračun NAVZGOR obrnjenih trikotnikov
         // Vsak trikotnik ima vrh na spodnji vrstici pasu in se širi navzgor.
-        
-        // schedule(dynamic) uporabimo za uravnoteženje obremenitve
-        // Trikotniki na robovih slike so namreč obrezani in vsebujejo manj pikslov 
-        // kot polni trikotniki v sredini, zato se izračunajo hitreje. 
-        // Niti ne čakajo proste, ampak sproti jemljejo 
-        // naslednje neobdelane trikotnike, kar maksimalno zaposli vsa jedra.
+    
 
         #pragma omp parallel for
         for (int t = 0; t < num_triangles; t++) {
@@ -154,14 +140,6 @@ void calculate_cumulative_energy_triangles(const float *energy, float *cumulativ
     }
 }
 
-// 3. KORAK: Iskanje poti šiva od zgoraj navzdol
-// Spustimo se od zgoraj navzdol in zapišemo X koordinate šiva.
-
-// - cumulative: Matrika kumulativnih energij (iz 2. koraka).
-// - seam: Matrika velikosti h (višina), kamor za vsako vrstico zapišemo X koordinato šiva.
-// - curr_width: Trenutna efektivna širina slike.
-// - curr_height: Višina slike.
-// - orig_width: Originalna širina slike za računanje indeksov.
 void find_seam(const float *cumulative, int *seam, int curr_width, int curr_height, int orig_width) {
     float min_val = 1e9f;
     int min_c = 0;
@@ -199,15 +177,6 @@ void find_seam(const float *cumulative, int *seam, int curr_width, int curr_heig
     }
 }
 
-// 4. KORAK: Paralelni pomik pikslov na levi po odstranitvi šiva
-// Odstranimo šiv tako, da piksle desno od njega premaknemo za eno mesto v levo.
-
-// - img: Kazalec na sliko, ki jo neposredno modificiramo.
-// - seam: Matrika z X koordinatami šiva, ki ga brišemo (iz 3. koraka).
-// - curr_width: Trenutna efektivna širina slike.
-// - curr_height: Višina slike.
-// - orig_width: Originalna širina slike za računanje preskokov v pomnilniku.
-// - cpp: Število barvnih kanalov (koliko bajtov zavzame en piksel).
 void remove_seam(unsigned char *img, const int *seam, int curr_width, int curr_height, int orig_width, int cpp) {
     #pragma omp parallel for
     for (int r = 0; r < curr_height; r++) {
@@ -258,11 +227,6 @@ void run_benchmark(unsigned char *image_in, unsigned char *working_img, float *e
     printf("Time: %f s\n", elapsed);
 }
 
-// ================= MAIN =================
-// Glavna vstopna točka programa.
-
-// - argc: Število argumentov iz komandne vrstice.
-// - argv: Matrika stringov (argumenti komandne vrstice).
 int main(int argc, char *argv[]) {
     if (argc < 4) {
         printf("Wrong number of arguments!\n");
