@@ -3,7 +3,7 @@
 #SBATCH --reservation=fri
 #SBATCH --job-name=code_sample
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=8
+#SBATCH --cpus-per-task=32
 #SBATCH --output=sample_out.log
 #SBATCH --hint=nomultithread
 
