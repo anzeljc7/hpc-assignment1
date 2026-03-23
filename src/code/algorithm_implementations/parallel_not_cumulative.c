@@ -198,8 +198,6 @@ void run_benchmark(unsigned char *image_in, unsigned char *working_img, float *e
 }
 
 
-// - argc: Število argumentov iz komandne vrstice.
-// - argv: Matrika stringov (argumenti komandne vrstice).
 int main(int argc, char *argv[]) {
     if (argc < 4) {
         printf("Wrong number of arguments!\n");
