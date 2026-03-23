@@ -72,3 +72,11 @@ Testiram: ../test_images/7680x4320.png
   Zagon 3/5
     Čas = 5.221492 s
   Zagon 4/5
+    Čas = 5.124287 s
+  Zagon 5/5
+    Čas = 5.615396 s
+  Povprečje za ../test_images/7680x4320.png = 5.327714 s
+
+Rezultati shranjeni v:
+  results/timings-triangle.csv
+  results/summary-triangle.txt
