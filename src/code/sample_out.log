@@ -1,81 +1,81 @@
 
 Testiram: valve.png
   Zagon 1/5
-    Čas = 0.014985 s
+    Čas = 0.015703 s
   Zagon 2/5
-    Čas = 0.014399 s
+    Čas = 0.015810 s
   Zagon 3/5
-    Čas = 0.014493 s
+    Čas = 0.015952 s
   Zagon 4/5
-    Čas = 0.014894 s
+    Čas = 0.015955 s
   Zagon 5/5
-    Čas = 0.014496 s
-  Povprečje za valve.png = 0.014653 s
+    Čas = 0.015795 s
+  Povprečje za valve.png = 0.015843 s
 
 Testiram: ../test_images/720x480.png
   Zagon 1/5
-    Čas = 0.015393 s
+    Čas = 0.019448 s
   Zagon 2/5
-    Čas = 0.015248 s
+    Čas = 0.019300 s
   Zagon 3/5
-    Čas = 0.015105 s
+    Čas = 0.019082 s
   Zagon 4/5
-    Čas = 0.015241 s
+    Čas = 0.021207 s
   Zagon 5/5
-    Čas = 0.015400 s
-  Povprečje za ../test_images/720x480.png = 0.015277 s
+    Čas = 0.019322 s
+  Povprečje za ../test_images/720x480.png = 0.019672 s
 
 Testiram: ../test_images/1024x768.png
   Zagon 1/5
-    Čas = 0.031164 s
+    Čas = 0.043464 s
   Zagon 2/5
-    Čas = 0.032100 s
+    Čas = 0.042944 s
   Zagon 3/5
-    Čas = 0.030833 s
+    Čas = 0.043158 s
   Zagon 4/5
-    Čas = 0.030625 s
+    Čas = 0.042532 s
   Zagon 5/5
-    Čas = 0.031393 s
-  Povprečje za ../test_images/1024x768.png = 0.031223 s
+    Čas = 0.043184 s
+  Povprečje za ../test_images/1024x768.png = 0.043056 s
 
 Testiram: ../test_images/1920x1200.png
   Zagon 1/5
-    Čas = 0.062850 s
+    Čas = 0.104981 s
   Zagon 2/5
-    Čas = 0.080718 s
+    Čas = 0.104690 s
   Zagon 3/5
-    Čas = 0.078819 s
+    Čas = 0.106237 s
   Zagon 4/5
-    Čas = 0.078088 s
+    Čas = 0.104091 s
   Zagon 5/5
-    Čas = 0.064607 s
-  Povprečje za ../test_images/1920x1200.png = 0.073016 s
+    Čas = 0.105875 s
+  Povprečje za ../test_images/1920x1200.png = 0.105175 s
 
 Testiram: ../test_images/3840x2160.png
   Zagon 1/5
-    Čas = 0.210171 s
+    Čas = 0.379607 s
   Zagon 2/5
-    Čas = 0.203699 s
+    Čas = 0.380001 s
   Zagon 3/5
-    Čas = 0.199113 s
+    Čas = 0.383140 s
   Zagon 4/5
-    Čas = 0.204874 s
+    Čas = 0.378614 s
   Zagon 5/5
-    Čas = 0.214184 s
-  Povprečje za ../test_images/3840x2160.png = 0.206408 s
+    Čas = 0.377857 s
+  Povprečje za ../test_images/3840x2160.png = 0.379844 s
 
 Testiram: ../test_images/7680x4320.png
   Zagon 1/5
-    Čas = 0.659627 s
+    Čas = 1.419851 s
   Zagon 2/5
-    Čas = 0.699100 s
+    Čas = 1.493431 s
   Zagon 3/5
-    Čas = 0.659368 s
+    Čas = 1.463996 s
   Zagon 4/5
-    Čas = 0.660459 s
+    Čas = 1.416969 s
   Zagon 5/5
-    Čas = 0.697425 s
-  Povprečje za ../test_images/7680x4320.png = 0.675196 s
+    Čas = 1.402259 s
+  Povprečje za ../test_images/7680x4320.png = 1.439301 s
 
 Rezultati shranjeni v:
   results/timings-parallel_seam.csv

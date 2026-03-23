@@ -68,7 +68,7 @@ void calculate_cumulative_energy_triangles(const float *energy, float *cumulativ
         int num_triangles = (curr_width + 2 * current_B - 1) / (2 * current_B) + 1;
 
         // KORAK A: Izračun NAVZGOR obrnjenih trikotnikov
-        #pragma omp parallel for schedule(dynamic)
+        #pragma omp parallel for
         for (int t = 0; t < num_triangles; t++) {
             int c_peak = t * 2 * current_B;
 
@@ -95,7 +95,7 @@ void calculate_cumulative_energy_triangles(const float *energy, float *cumulativ
         } 
 
         // KORAK B: Izračun NAVZDOL obrnjenih trikotnikov
-        #pragma omp parallel for schedule(dynamic)
+        #pragma omp parallel for
         for (int t = 0; t < num_triangles; t++) {
             for (int r = r_bottom; r >= r_top; r--) {
                 int spread = r_bottom - r;
