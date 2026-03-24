@@ -3,11 +3,11 @@
 #SBATCH --reservation=fri
 #SBATCH --job-name=code_sample
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=1
+#SBATCH --cpus-per-task=32
 #SBATCH --output=sample_out.log
 #SBATCH --hint=nomultithread
 
-PROGRAM_NAME="basic"
+PROGRAM_NAME="parallel_seam"
 
 set -e 
 
@@ -44,21 +44,17 @@ run_and_measure () {
 
     for ((i=1; i<=RUNS; i++)); do
         echo "  Zagon $i/$RUNS"
-
         program_output=$(srun "./${PROGRAM_NAME}" "$input" "$output" "$seams" 2>&1)
-        
-        echo "$program_output"
-        
         time_s=$(echo "$program_output" | awk '/^Time:/ {print $2}')
 
         if [ -z "$time_s" ]; then
-            echo "Napaka: časa nisem našel v izpisu."
-            echo "$program_output"
+            echo "    Napaka: časa nisem našel v izpisu."
+            echo "$program_output" | sed 's/^/      /'
             exit 1
         fi
-
+        echo "$program_output" | grep -v "^Time:" | sed 's/^/    /'
         echo "$input;$THREADS;$i;$time_s" >> "$RESULTS_FILE"
-        echo "    Čas = $time_s s"
+        printf "    --> Čas: %9s s\n" "$time_s"
     done
 
     avg=$(awk -F';' -v img="$input" -v th="$THREADS" '
@@ -68,7 +64,10 @@ run_and_measure () {
         }
     ' "$RESULTS_FILE")
 
-    echo "  Povprečje za $input = $avg s"
+    echo "  -------------------------------------------------"
+    printf "  Povprečje za %-21s = %9s s\n" "$input" "$avg"
+    echo "  -------------------------------------------------"
+    
     echo "$input | niti=$THREADS | povprecje=$avg s" >> "$SUMMARY_FILE"
 }
 
