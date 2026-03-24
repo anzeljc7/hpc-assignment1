@@ -5,33 +5,33 @@ Testiram: valve.png
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.012005 s
+    --> Čas:  0.065453 s
   Zagon 2/5
     Loaded image valve.png of size 600x450 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.012216 s
+    --> Čas:  0.064170 s
   Zagon 3/5
     Loaded image valve.png of size 600x450 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.012021 s
+    --> Čas:  0.064260 s
   Zagon 4/5
     Loaded image valve.png of size 600x450 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.012028 s
+    --> Čas:  0.064543 s
   Zagon 5/5
     Loaded image valve.png of size 600x450 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.012261 s
+    --> Čas:  0.064516 s
   -------------------------------------------------
-  Povprečje za valve.png             =  0.012106 s
+  Povprečje za valve.png             =  0.064588 s
   -------------------------------------------------
 
 Testiram: ../test_images/720x480.png
@@ -40,33 +40,33 @@ Testiram: ../test_images/720x480.png
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.013138 s
+    --> Čas:  0.071995 s
   Zagon 2/5
     Loaded image ../test_images/720x480.png of size 720x480 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.013053 s
+    --> Čas:  0.071967 s
   Zagon 3/5
     Loaded image ../test_images/720x480.png of size 720x480 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.013362 s
+    --> Čas:  0.073208 s
   Zagon 4/5
     Loaded image ../test_images/720x480.png of size 720x480 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.012945 s
+    --> Čas:  0.072025 s
   Zagon 5/5
     Loaded image ../test_images/720x480.png of size 720x480 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.013124 s
+    --> Čas:  0.071599 s
   -------------------------------------------------
-  Povprečje za ../test_images/720x480.png =  0.013124 s
+  Povprečje za ../test_images/720x480.png =  0.072159 s
   -------------------------------------------------
 
 Testiram: ../test_images/1024x768.png
@@ -75,33 +75,33 @@ Testiram: ../test_images/1024x768.png
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.027505 s
+    --> Čas:  0.142103 s
   Zagon 2/5
     Loaded image ../test_images/1024x768.png of size 1024x768 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.027824 s
+    --> Čas:  0.138482 s
   Zagon 3/5
     Loaded image ../test_images/1024x768.png of size 1024x768 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.027797 s
+    --> Čas:  0.137892 s
   Zagon 4/5
     Loaded image ../test_images/1024x768.png of size 1024x768 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.027768 s
+    --> Čas:  0.138289 s
   Zagon 5/5
     Loaded image ../test_images/1024x768.png of size 1024x768 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.027761 s
+    --> Čas:  0.138774 s
   -------------------------------------------------
-  Povprečje za ../test_images/1024x768.png =  0.027731 s
+  Povprečje za ../test_images/1024x768.png =  0.139108 s
   -------------------------------------------------
 
 Testiram: ../test_images/1920x1200.png
@@ -110,33 +110,33 @@ Testiram: ../test_images/1920x1200.png
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.068423 s
+    --> Čas:  0.335962 s
   Zagon 2/5
     Loaded image ../test_images/1920x1200.png of size 1920x1200 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.067587 s
+    --> Čas:  0.324083 s
   Zagon 3/5
     Loaded image ../test_images/1920x1200.png of size 1920x1200 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.067544 s
+    --> Čas:  0.338276 s
   Zagon 4/5
     Loaded image ../test_images/1920x1200.png of size 1920x1200 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.067301 s
+    --> Čas:  0.334714 s
   Zagon 5/5
     Loaded image ../test_images/1920x1200.png of size 1920x1200 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.052353 s
+    --> Čas:  0.338040 s
   -------------------------------------------------
-  Povprečje za ../test_images/1920x1200.png =  0.064642 s
+  Povprečje za ../test_images/1920x1200.png =  0.334215 s
   -------------------------------------------------
 
 Testiram: ../test_images/3840x2160.png
@@ -145,33 +145,33 @@ Testiram: ../test_images/3840x2160.png
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.168289 s
+    --> Čas:  0.987677 s
   Zagon 2/5
     Loaded image ../test_images/3840x2160.png of size 3840x2160 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.168487 s
+    --> Čas:  0.990125 s
   Zagon 3/5
     Loaded image ../test_images/3840x2160.png of size 3840x2160 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.167793 s
+    --> Čas:  0.984275 s
   Zagon 4/5
     Loaded image ../test_images/3840x2160.png of size 3840x2160 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.166669 s
+    --> Čas:  0.979498 s
   Zagon 5/5
     Loaded image ../test_images/3840x2160.png of size 3840x2160 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.167742 s
+    --> Čas:  0.980101 s
   -------------------------------------------------
-  Povprečje za ../test_images/3840x2160.png =  0.167796 s
+  Povprečje za ../test_images/3840x2160.png =  0.984335 s
   -------------------------------------------------
 
 Testiram: ../test_images/7680x4320.png
@@ -180,35 +180,35 @@ Testiram: ../test_images/7680x4320.png
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.551397 s
+    --> Čas:  3.661926 s
   Zagon 2/5
     Loaded image ../test_images/7680x4320.png of size 7680x4320 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.567514 s
+    --> Čas:  3.804758 s
   Zagon 3/5
     Loaded image ../test_images/7680x4320.png of size 7680x4320 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.569586 s
+    --> Čas:  3.993801 s
   Zagon 4/5
     Loaded image ../test_images/7680x4320.png of size 7680x4320 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.568933 s
+    --> Čas:  3.732173 s
   Zagon 5/5
     Loaded image ../test_images/7680x4320.png of size 7680x4320 with 3 channels. Removing 128 seams.
     Using 32 threads.
     Thread 0 -> CPU 0 NUMA 0
     Thread 31 -> CPU 31 NUMA 1
-    --> Čas:  0.553222 s
+    --> Čas:  4.004194 s
   -------------------------------------------------
-  Povprečje za ../test_images/7680x4320.png =  0.562130 s
+  Povprečje za ../test_images/7680x4320.png =  3.839370 s
   -------------------------------------------------
 
 Rezultati shranjeni v:
-  results/timings-parallel_seam.csv
-  results/summary-parallel_seam.txt
+  results/timings-triangle.csv
+  results/summary-triangle.txt

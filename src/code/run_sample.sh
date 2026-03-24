@@ -7,7 +7,7 @@
 #SBATCH --output=sample_out.log
 #SBATCH --hint=nomultithread
 
-PROGRAM_NAME="parallel_seam"
+PROGRAM_NAME="triangle"
 
 set -e 
 
