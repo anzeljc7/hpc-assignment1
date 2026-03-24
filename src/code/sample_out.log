@@ -1,82 +1,82 @@
 
 Testiram: valve.png
   Zagon 1/5
-    Čas = 0.081822 s
+    Čas = 0.492003 s
   Zagon 2/5
-    Čas = 0.080895 s
+    Čas = 0.493683 s
   Zagon 3/5
-    Čas = 0.074333 s
+    Čas = 0.495067 s
   Zagon 4/5
-    Čas = 0.081630 s
+    Čas = 0.495544 s
   Zagon 5/5
-    Čas = 0.082185 s
-  Povprečje za valve.png = 0.080173 s
+    Čas = 0.493852 s
+  Povprečje za valve.png = 0.494030 s
 
 Testiram: ../test_images/720x480.png
   Zagon 1/5
-    Čas = 0.085276 s
+    Čas = 0.639503 s
   Zagon 2/5
-    Čas = 0.078729 s
+    Čas = 0.640236 s
   Zagon 3/5
-    Čas = 0.086463 s
+    Čas = 0.641177 s
   Zagon 4/5
-    Čas = 0.085747 s
+    Čas = 0.640846 s
   Zagon 5/5
-    Čas = 0.086475 s
-  Povprečje za ../test_images/720x480.png = 0.084538 s
+    Čas = 0.638375 s
+  Povprečje za ../test_images/720x480.png = 0.640027 s
 
 Testiram: ../test_images/1024x768.png
   Zagon 1/5
-    Čas = 0.155573 s
+    Čas = 1.508066 s
   Zagon 2/5
-    Čas = 0.172984 s
+    Čas = 1.504657 s
   Zagon 3/5
-    Čas = 0.158117 s
+    Čas = 1.504864 s
   Zagon 4/5
-    Čas = 0.161426 s
+    Čas = 1.505525 s
   Zagon 5/5
-    Čas = 0.158012 s
-  Povprečje za ../test_images/1024x768.png = 0.161222 s
+    Čas = 1.509826 s
+  Povprečje za ../test_images/1024x768.png = 1.506588 s
 
 Testiram: ../test_images/1920x1200.png
   Zagon 1/5
-    Čas = 0.381774 s
+    Čas = 4.582377 s
   Zagon 2/5
-    Čas = 0.379965 s
+    Čas = 4.576180 s
   Zagon 3/5
-    Čas = 0.383328 s
+    Čas = 4.579427 s
   Zagon 4/5
-    Čas = 0.386923 s
+    Čas = 4.575839 s
   Zagon 5/5
-    Čas = 0.391686 s
-  Povprečje za ../test_images/1920x1200.png = 0.384735 s
+    Čas = 4.574787 s
+  Povprečje za ../test_images/1920x1200.png = 4.577722 s
 
 Testiram: ../test_images/3840x2160.png
   Zagon 1/5
-    Čas = 1.321936 s
+    Čas = 16.829987 s
   Zagon 2/5
-    Čas = 1.239867 s
+    Čas = 16.840751 s
   Zagon 3/5
-    Čas = 1.331688 s
+    Čas = 16.892520 s
   Zagon 4/5
-    Čas = 1.302018 s
+    Čas = 16.851168 s
   Zagon 5/5
-    Čas = 1.351256 s
-  Povprečje za ../test_images/3840x2160.png = 1.309353 s
+    Čas = 16.830129 s
+  Povprečje za ../test_images/3840x2160.png = 16.848911 s
 
 Testiram: ../test_images/7680x4320.png
   Zagon 1/5
-    Čas = 5.255763 s
+    Čas = 70.299552 s
   Zagon 2/5
-    Čas = 5.421631 s
+    Čas = 67.615797 s
   Zagon 3/5
-    Čas = 5.221492 s
+    Čas = 67.486783 s
   Zagon 4/5
-    Čas = 5.124287 s
+    Čas = 67.446115 s
   Zagon 5/5
-    Čas = 5.615396 s
-  Povprečje za ../test_images/7680x4320.png = 5.327714 s
+    Čas = 67.408523 s
+  Povprečje za ../test_images/7680x4320.png = 68.051354 s
 
 Rezultati shranjeni v:
-  results/timings-triangle.csv
-  results/summary-triangle.txt
+  results/timings-basic.csv
+  results/summary-basic.txt
