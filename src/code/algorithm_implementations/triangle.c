@@ -78,9 +78,7 @@ void calculate_cumulative_energy_triangles(const float *energy, float *cumulativ
         // Formula (W + 2B - 1) / (2B) + 1 zagotovi, da pokrijemo tudi desni rob.
         int num_triangles = (curr_width + 2 * current_B - 1) / (2 * current_B) + 1;
 
-        // Izračun NAVZGOR obrnjenih trikotnikov
-        // Vsak trikotnik ima vrh na spodnji vrstici pasu in se širi navzgor.
-
+        // Izračun V-oblik (trikotniki s konico spodaj, ki se širijo navzgor
 #pragma omp parallel for
         for (int t = 0; t < num_triangles; t++)
         {
@@ -119,11 +117,7 @@ void calculate_cumulative_energy_triangles(const float *energy, float *cumulativ
             }
         }
 
-// Izračun NAVZDOL obrnjenih trikotnikov
-// Sedaj imamo v pasu izračunane vrhove (A). Ostale so "vrzeli", ki po obliki
-// spominjajo na navzdol obrnjene trikotnike. Njihova spodnja meja je široka,
-// zgoraj pa se stikajo v točki. Ker se zanašajo na že izračunane robove A trikotnikov,
-// jih zdaj lahko spet vzporedno zapolnimo.
+// Izračun A-oblik (vrzeli široke spodaj, ki se ožijo navzgor)
 #pragma omp parallel for
         for (int t = 0; t < num_triangles; t++)
         {

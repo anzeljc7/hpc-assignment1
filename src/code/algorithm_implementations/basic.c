@@ -39,7 +39,7 @@ void calculate_energy(const unsigned char *img, float *energy, int curr_width, i
 
                 total_energy += sqrtf(gx * gx + gy * gy);
             }
-            // Povprečimo energijo čez vse kanale in shranimo
+            // Preskok za r širin in pozicija energije na c
             energy[r * orig_width + c] = total_energy / (float)cpp;
         }
     }

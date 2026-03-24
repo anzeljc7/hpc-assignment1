@@ -8,10 +8,8 @@
 #include "utils.h"
 #include "stb_image.h"
 
-// 1. KORAK: Paralelni izračun energije
 void calculate_energy(const unsigned char *img, float *energy, int curr_width, int curr_height, int orig_width, int cpp)
 {
-// Zunanjo zanko po vrsticah lahko paraleliziramo, saj so izračuni pikslov neodvisni
 #pragma omp parallel for
     for (int r = 0; r < curr_height; r++)
     {
@@ -39,7 +37,7 @@ void calculate_energy(const unsigned char *img, float *energy, int curr_width, i
 
                 total_energy += sqrtf(gx * gx + gy * gy);
             }
-            // Povprečimo energijo čez vse kanale in shranimo
+            // Preskok za r širin in pozicija energije na c
             energy[r * orig_width + c] = total_energy / (float)cpp;
         }
     }
@@ -89,7 +87,7 @@ void find_seam(const float *cumulative, int *seam, int curr_width, int curr_heig
     float min_val = 1e9f;
     int min_c = 0;
 
-    // Najprej najdemo piksel z najmanjšo vrednostjo povsem zgoraj (vrstica 0)
+    // Najprej najdemo piksel z najmanjšo vrednostjo na vrhu
     for (int c = 0; c < curr_width; c++)
     {
         if (cumulative[0 * orig_width + c] < min_val)
