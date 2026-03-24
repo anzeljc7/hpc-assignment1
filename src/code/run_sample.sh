@@ -46,6 +46,9 @@ run_and_measure () {
         echo "  Zagon $i/$RUNS"
 
         program_output=$(srun "./${PROGRAM_NAME}" "$input" "$output" "$seams" 2>&1)
+        
+        echo "$program_output"
+        
         time_s=$(echo "$program_output" | awk '/^Time:/ {print $2}')
 
         if [ -z "$time_s" ]; then
